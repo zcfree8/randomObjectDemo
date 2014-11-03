@@ -11,11 +11,12 @@
 @implementation NSMutableArray (randomObject)
 
 -(NSEnumerator *)randomObjectEnumerator{
-    for(int i=0;i<self.count;i++){
-        int value=arc4random() % (self.count-i) + i;
-        [self exchangeObjectAtIndex:i withObjectAtIndex:value];
+    NSMutableArray *arr=[self mutableCopy];
+    for(int i=0;i<arr.count;i++){
+        int value=arc4random() % (arr.count-i) + i;
+        [arr exchangeObjectAtIndex:i withObjectAtIndex:value];
     }
-    NSEnumerator *myEnumerator=[self objectEnumerator];
+    NSEnumerator *myEnumerator=[arr objectEnumerator];
     return myEnumerator;
 }
 @end
